@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8" />
+
+</head>
+<body>
+
+    <header class="main-header">
+          <div class="header-brand">
+    <a href="index.html" class="brand-title">Gallery </a>
+  </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="Client3_LogoPalette1_FFF7EE.png" style="height: 200px; width: auto; display: block;" alt="Book Haven Bookstore Home">
+            </a>
+            </div>
+
+   <nav class="Navigation">
+    
+    
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+</body>
+</html>
+
+
+
+
+
+
+
+    <!-- MAIN GALLERY CONTENT SECTION -->
+    <main class="gallery">
+
+        <!-- VIEW CART BUTTON (Matches screenshot placement) -->
+        <button class="view-cart" onclick="viewCart()">View Cart</button>
+
+        <!-- BOOK LAYOUT GRID CONTAINER -->
+        <div class="book-grid">
+
+            <!-- Card 1 -->
+            <div class="book-card">
+                <img src="Client3_Book1.png" alt="Book cover for Brie Mine 4EVER">
+                <h2>Brie Mine 4EVER </h2>
+                <p>A book for cheese lovers</p>
+                <button onclick="addToCart('Brie Mine 4EVER')">Add to Cart</button>
+            </div>
+
+            <!-- Card 2 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Book2.png" alt="Cover of Glory Riders">
+                <h2>Glory Riders</h2>
+                <p>A book about bikers</p>
+                <button onclick="addToCart('Glory Riders')">Add to Cart</button>
+            </div>
+
+            <!-- Card 3 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Book3.png" alt="Cover of Sorcerer's Shadowed Chronicles">
+                <h2>Sorcerer's Shadowed Chronicles </h2>
+                <p>A fantasy book</p>
+                <button onclick="addToCart('Sorcerers Shadowed Chronicles')">Add to Cart</button>
+            </div>
+
+            <!-- Card 4 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Magazine1.png" alt="Cover of Ball">
+                <h2>Ball</h2>
+                <p>A magazine about pickleball </p>
+                <button onclick="addToCart('Ball')">Add to Cart</button>
+            </div>
+
+            <!-- Card 5 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Magazine2.png" alt="Cover of Travel">
+                <h2>Travel</h2>
+                <p>A magazine for Travelers</p>
+                <button onclick="addToCart('Travel')">Add to Cart</button>
+            </div>
+
+            <!-- Card 6 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Magazine3.png" alt="Cover of Eat">
+                <h2>Eat</h2>
+                <p>A magazine for foodies</p>
+                <button onclick="addToCart('Eat')">Add to Cart</button>
+            </div>
+
+   <!-- Card 7(Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_ToteBag.png" alt="Cover of ToteBag">
+                <h2>Tote Bag</h2>
+                <p>A canvas tote with black lettering that says  ALL I DO IS READ READ READ </p>
+                <button onclick="addToCart('Totebag', 13.99)">Add to Cart</button>
+            </div>
+
+               <!-- Card 8 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Notebook.png" alt="Cover of notebook">
+                <h2>Notebook</h2>
+                <p>A notebook with text on the cover that says Book Haven Store</p>
+                <button onclick="addToCart('Notebook')">Add to Cart</button>
+            </div>
+
+               <!-- Card 9 (Fixed parameters) -->
+            <div class="book-card">
+                <img src="Client3_Stickers.png" alt="Cover of Stickers">
+                <h2>Book Haven Bookstore Stickers </h2>
+                <p> A set of four Book Haven Bookstore stickers that promote reading </p>
+                <button onclick="addToCart('Stickers')">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- POP-UP OVERLAY MODAL BOX  -->
+    <div id="cartModal" class="cart-modal-overlay">
+        <div class="cart-modal-content">
+            <span class="close-modal-btn" id="closeCartBtn">&times;</span>
+            <h2>Your Cart</h2>
+            <ul id="cartItemsList"></ul>
+            <div class="cart-modal-actions">
+                <button type="button" class="btn-clear-cart" onclick="clearCart()">Clear Cart</button>
+                <button type="button" class="btn-process-order" onclick="processOrder()">Process Order</button>
+            </div>
+        </div>
+    </div>
+
+  
+    <script>
+        // 1. Initialize or load saved shopping lists straight out of SessionStorage using the exact key 'cartItems'
+        let cart = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+
+        const modalOverlay = document.getElementById('cartModal');
+        const bulletListContainer = document.getElementById('cartItemsList');
+
+        // 2. Interface Sync Function: Keeps structural UI rows updated live
+        function updateCartUI() {
+            bulletListContainer.innerHTML = "";
+            
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item; // Displays the text item cleanly as a bullet point
+                bulletListContainer.appendChild(listItem);
+            });
+        }
+
+        
+        updateCartUI();
+
+        // 3. Add to Cart Logic Function
+        function addToCart(bookTitle, bookPrice) {
+            // Push only the title string into the array to match the clean string array layout in the screenshot
+            cart.push(bookTitle);
+            
+            // Save the updated list array inside SessionStorage memory using the exact 'cartItems' key
+            sessionStorage.setItem('cartItems', JSON.stringify(cart));
+            
+            alert(`"${bookTitle}" has been added to your cart.`);
+        }
+
+        // 4. View Cart Modal Window Show Function
+        function viewCart() {
+            updateCartUI(); 
+            modalOverlay.style.display = 'flex'; 
+        }
+
+        // 5. Close window events setup hooks
+        document.getElementById('closeCartBtn').addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+        });
+
+        // 6. Clear Memory Function
+        function clearCart() {
+            cart = [];
+            sessionStorage.removeItem('cartItems'); // Wipes 'cartItems' key from SessionStorage
+            updateCartUI();
+            alert("Your cart has been cleared.");
+        }
+
+        // 7. Checkout Process Function
+        function processOrder() {
+            if (cart.length === 0) {
+                alert("Your cart is currently empty!");
+            } else {
+                alert("Order processed successfully!");
+                clearCart();
+                modalOverlay.style.display = 'none';
+            }
+        }
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+<div class="subscribe-bar">
+  <div class="subscribe-content">
+    <p>Sign up for our latest updates!</p>
+    
+  \
+    <form id="subscribeForm" action="#" method="POST">
+      <input type="email" id="subscribeEmail" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+
+   
+      <nav class="subscribe-navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      
+    </form>
+  </div>
+</div> 
+
+<!-- Subscribe Bar JavaScript -->
+<script>
+const subscribeForm = document.getElementById("subscribeForm");
+
+subscribeForm.addEventListener("submit", function(event) {
+  // 1. Prevent the page from reloading via action="#"
+  event.preventDefault();
+
+  // 2. Extract the email value from the input field
+  const emailInput = document.getElementById("subscribeEmail").value.trim();
+
+  // 3. Save the subscriber info to Local Storage using the email as the key
+  const subscribeData = {
+    email: emailInput,
+    subscribedAt: new Date().toLocaleString()
+  };
+  localStorage.setItem(emailInput, JSON.stringify(subscribeData));
+
+  // 4. Trigger the pop-up notification window
+  alert("Thank you for subscribing! You have successfully signed up for updates.");
+
+  // 5. Clear the email input field cleanly
+  subscribeForm.reset();
+});
+</script>
+
+
+
+
+
+<link rel="stylesheet" href=".subscribe-bar.css">

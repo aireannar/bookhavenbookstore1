@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href=".subscribe-bar.css">
+
+</head>
+<body>
+
+    <header class="main-header">
+          <div class="header-brand">
+    <a href="index.html" class="brand-title">Book Haven Bookstore</a>
+  </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="Client3_LogoPalette1_FFF7EE.png" style="height: 200px; width: auto; display: block;" alt="Book Haven Bookstore Home">
+            </a>
+            </div>
+
+   <nav class="Navigation">
+    
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+</body>
+</html>
+
+<div class="about-section">
+  <h2 class="about-lead">Welcome to Book Haven Bookstore, your cozy independent community bookstore dedicated to connecting readers with their next favorite stories.</h2>
+  
+  <p>We pride ourselves on offering a carefully curated collection of local authors, hidden gems, and the latest releases across all genres. More than just a shop, we are a warm gathering place for book lovers to share recommendations, attend vibrant local events, and celebrate the enduring joy of reading. When you support us, you choose to invest directly in local literary talent and keep our community's creative spirit thriving.</p>
+
+</div>
+
+
+<img src="WEBDEV445_c.png" class="gallery-image" alt="Book Haven Bookstore Display">
+
+
+<!-- TOP BOOKSTORE PROMO BANNERS GRID -->
+<div class="top-promo-banner">
+  
+  <!-- Banner 1: Today's Specials -->
+  <div class="banner-section">
+    <h2>Today's Specials</h2>
+    <p>Check out our handpicked discount selections for today. Grab them before they are gone!</p>
+  </div>
+
+  <!-- Banner 2: Weekly Deals -->
+  <div class="banner-section">
+    <h2>Weekly Deals</h2>
+    <p>Save big all week long on community favorites, top releases, and essential reads.</p>
+  </div>
+
+  <!-- Banner 3: Special Offer -->
+  <div class="banner-section">
+    <h2>Limited Edition Finds</h2>
+    <p>Explore exclusive, signed copies and unique print runs available this week only.</p>
+  </div>
+
+</div>
+
+
+
+
+
+
+<!-- WHY SHOP HERE SECTION (Colored block strip layout) -->
+<div class="why-shop-section">
+  
+  <div class="why-shop-header">
+    <h1>Why shop here...</h1>
+  </div>
+
+  <div class="why-shop-grid">
+    <!-- Box 1: Support Your Community -->
+    <div class="why-card">
+      <h3>Support Your Community</h3>
+      <p>When you shop local, your purchase helps support small businesses, local jobs, and the community you call home.</p>
+    </div>
+
+    <!-- Box 2: Discover Something New -->
+    <div class="why-card">
+      <h3>Discover Something New</h3>
+      <p>From hidden gems to new releases, local bookstores make it easy to discover your next favorite read.</p>
+    </div>
+
+    <!-- Box 3: A Place for Book Lovers -->
+    <div class="why-card">
+      <h3>A Place for Book Lovers</h3>
+      <p>More than just a store, we're a place where readers can connect, discover new stories, and share their love of books.</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+<div class="subscribe-bar">
+  <div class="subscribe-content">
+    <p>Sign up for our latest updates!</p>
+    
+  \
+    <form id="subscribeForm" action="#" method="POST">
+      <input type="email" id="subscribeEmail" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+
+   
+      <nav class="subscribe-navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      
+    </form>
+  </div>
+</div> 
+
+<!-- Subscribe Bar JavaScript -->
+<script>
+const subscribeForm = document.getElementById("subscribeForm");
+
+subscribeForm.addEventListener("submit", function(event) {
+  // 1. Prevent the page from reloading via action="#"
+  event.preventDefault();
+
+  // 2. Extract the email value from the input field
+  const emailInput = document.getElementById("subscribeEmail").value.trim();
+
+  // 3. Save the subscriber info to Local Storage using the email as the key
+  const subscribeData = {
+    email: emailInput,
+    subscribedAt: new Date().toLocaleString()
+  };
+  localStorage.setItem(emailInput, JSON.stringify(subscribeData));
+
+  // 4. Trigger the pop-up notification window
+  alert("Thank you for subscribing! You have successfully signed up for updates.");
+
+  // 5. Clear the email input field cleanly
+  subscribeForm.reset();
+});
+</script>
+
+
+
+<section class="categories">
+  <h2>Shop by Category</h2>
+  <p class="category-intro">Find your next great read.</p>
+
+  <div class="category-grid">
+
+    <a href="gallery.html"  class="category-card">
+      <h3>Fiction</h3>
+      <p>Explore unforgettable stories and characters.</p>
+      <span>Shop Fiction →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Romance</h3>
+      <p>Fall in love with your next favorite book.</p>
+      <span>Shop Romance →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Fantasy & Sci-Fi</h3>
+      <p>Discover magical worlds and new adventures.</p>
+      <span>Shop Fantasy →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Mystery & Thriller</h3>
+      <p>Find stories that will keep you guessing.</p>
+      <span>Shop Mystery →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Horror</h3>
+      <p>Discover chilling stories and dark tales.</p>
+      <span>Shop Horror →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Nonfiction</h3>
+      <p>Explore real stories, ideas, and inspiration.</p>
+      <span>Shop Nonfiction →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Children's Books</h3>
+      <p>Stories for curious young readers.</p>
+      <span>Shop Children's →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Young Adult</h3>
+      <p>Adventure, romance, fantasy, and more.</p>
+      <span>Shop Young Adult →</span>
+    </a>
+
+    <a href="gallery.html" class="category-card">
+      <h3>Local Authors</h3>
+      <p>Discover and support writers from our community.</p>
+      <span>Shop Local →</span>
+    </a>
+
+  </div>
+</section>
+
+
+
+
+<link rel="stylesheet" href=".subscribe-bar.css">
+
+

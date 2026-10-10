@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8" />
+
+</head>
+<body>
+
+    <header class="main-header">
+          <div class="header-brand">
+    <a href="index.html" class="brand-title">About Us </a>
+  </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="Client3_LogoPalette1_FFF7EE.png" style="height: 200px; width: auto; display: block;" alt="Book Haven Bookstore Home">
+            </a>
+            </div>
+
+   <nav class="Navigation">
+
+
+    
+    
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+</body>
+</html>
+
+<div class="about-section">
+  <h2>About Book Haven Bookstore </h2>
+  <p class="about-lead">Welcome to Book Haven Bookstore, your cozy neighborhood destination for stories, community, and discovery right here in Jonesboro.</p>
+  <p>More than just a store, we are a passionate space built for book lovers. From carefully curated hidden gems and brand-new releases to local author features, we make it easy to discover your next favorite read. We believe that bookstores are the heart of a community, and every purchase you make helps support local small businesses and jobs.</p>
+  <p>Whether you are here to quietly browse our wooden shelves, settle into a comfortable armchair in our reading nook, or connect with fellow readers at our upcoming events, we invite you to make yourself at home. Step inside, discover a new story, and share your love of books with us.</p>
+</div>
+
+
+<div class="hours-box">
+    <h3>Hours of Operation</h3>
+    <table class="hours-table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monday–Friday</td>
+                <td>9 a.m. to 8 p.m.</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>10 a.m. to 6 p.m.</td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td>11 a.m. to 5 p.m.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+<div class="contact-form-container">
+  <h1>Contact Us</h1>
+  <form id="contactForm">
+    <!-- Name -->
+    <div class="input-group">
+      <label for="userName">Name:</label>
+      <input type="text" id="userName" name="name" placeholder="Your Name" required>
+    </div>
+
+    <!-- Email -->
+    <div class="input-group">
+      <label for="userEmail">Email Address:</label>
+      <input type="email" id="userEmail" name="email" placeholder="Your Email" required>
+    </div>
+
+    <!-- Phone -->
+    <div class="input-group">
+      <label for="userPhone">Phone Number:</label>
+      <input type="tel" id="userPhone" name="phone" placeholder="Your Phone Number (Optional)">
+    </div>
+
+    <!-- Feedback -->
+    <div class="input-group">
+      <label for="userFeedback">Feedback/Order Information:</label>
+      <textarea id="userFeedback" name="feedback" rows="5" placeholder="Your Feedback/Custom Order Information" required></textarea>
+    </div>
+
+    <!-- Custom Order -->
+    <div class="checkbox-group">
+      <input type="checkbox" id="customOrder" name="customOrder">
+      <label for="customOrder">Custom Order</label>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="submit" class="btn-submit">Submit</button>
+      <button type="reset" class="btn-clear">Clear Form</button>
+    </div>
+
+    <!-- Confirmation Message -->
+    <p id="formMessage" role="status"></p>
+  </form>
+</div>
+
+<!-- Contact Form JavaScript -->
+<script>
+const contactForm = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+contactForm.addEventListener("submit", function(event) {
+  // Prevent page reload
+  event.preventDefault();
+
+  const name = document.getElementById("userName").value.trim();
+  const email = document.getElementById("userEmail").value.trim();
+  const phone = document.getElementById("userPhone").value.trim();
+  const feedback = document.getElementById("userFeedback").value.trim();
+  const customOrder = document.getElementById("customOrder").checked;
+
+  // Build submission payload
+  const formData = {
+    name: name,
+    email: email,
+    phone: phone,
+    feedback: feedback,
+    customOrder: customOrder
+  };
+
+  // Save unique entry to Local Storage using name key
+  localStorage.setItem(name, JSON.stringify(formData));
+
+  // Update on-screen feedback element for screen readers
+  formMessage.style.color = "#2E4057";
+  formMessage.textContent = "Thank you! Your submission has been saved.";
+
+  // Trigger modal alert notification instantly
+  alert("Thank you for contacting us! Your form has been submitted successfully!");
+
+  // Reset all fields safely
+  contactForm.reset();
+});
+
+// Sync clear event cleanly with the built-in form reset mechanism
+contactForm.addEventListener("reset", function() {
+  formMessage.textContent = "";
+});
+</script>
+
+
+
+
+
+
+
+
+<div class="subscribe-bar">
+  <div class="subscribe-content">
+    <p>Sign up for our latest updates!</p>
+    
+  \
+    <form id="subscribeForm" action="#" method="POST">
+      <input type="email" id="subscribeEmail" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+
+   
+      <nav class="subscribe-navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      
+    </form>
+  </div>
+</div> 
+
+<!-- Subscribe Bar JavaScript -->
+<script>
+const subscribeForm = document.getElementById("subscribeForm");
+
+subscribeForm.addEventListener("submit", function(event) {
+  // 1. Prevent the page from reloading via action="#"
+  event.preventDefault();
+
+  // 2. Extract the email value from the input field
+  const emailInput = document.getElementById("subscribeEmail").value.trim();
+
+  // 3. Save the subscriber info to Local Storage using the email as the key
+  const subscribeData = {
+    email: emailInput,
+    subscribedAt: new Date().toLocaleString()
+  };
+  localStorage.setItem(emailInput, JSON.stringify(subscribeData));
+
+  // 4. Trigger the pop-up notification window
+  alert("Thank you for subscribing! You have successfully signed up for updates.");
+
+  // 5. Clear the email input field cleanly
+  subscribeForm.reset();
+});
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href=".subscribe-bar.css">
+
