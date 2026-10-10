@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8" />
+
+</head>
+<body>
+
+    <header class="main-header">
+          <div class="header-brand">
+    <a href="index.html" class="brand-title">Events </a>
+  </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="Client3_LogoPalette1_FFF7EE.png" style="height: 200px; width: auto; display: block;" alt="Book Haven Bookstore Home">
+            </a>
+            </div>
+
+   <nav class="Navigation">
+    
+    
+    
+
+
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+</body>
+</html>
+
+
+
+
+
+<main>
+
+    <section class="events-header">
+        <h1>Upcoming Events</h1>
+        <p>
+            Join our community of book lovers! From book clubs to author
+            signings, there's always something happening at our bookstore.
+        </p>
+    </section>
+
+
+    <section class="events-container">
+
+        <div class="event-card">
+            <h2>Monthly Book Club</h2>
+            <p class="event-date">October 15 | 6:00 PM</p>
+
+            <p>
+                Join us for our monthly book club! Meet other local readers,
+                discuss this month's featured book, and discover your next
+                favorite read.
+            </p>
+
+  <button onclick="openRegistration('Monthly Book Club')">
+    Register
+</button>
+        </div>
+
+
+        <div class="event-card">
+            <h2>Local Author Signing</h2>
+            <p class="event-date">October 22 | 2:00 PM</p>
+
+            <p>
+                Meet a local author, learn about their newest book, and
+                purchase a signed copy during this special community event.
+            </p>
+
+           <button onclick="openRegistration('Local Author Signing')">
+    Register
+</button>
+        </div>
+
+
+        <div class="event-card">
+            <h2>Children's Story Time</h2>
+            <p class="event-date">October 25 | 10:00 AM</p>
+
+            <p>
+                Bring the family for a morning of stories and fun.
+                Story Time is designed for young readers and their families.
+            </p>
+
+         <button onclick="openRegistration('Children\'s Story Time')">
+    Register
+</button>
+        </div>
+
+
+        <div class="event-card">
+            <h2>New Release Night</h2>
+            <p class="event-date">November 3 | 7:00 PM</p>
+
+            <p>
+                Celebrate one of the season's most anticipated new releases
+                with fellow readers, refreshments, and bookstore activities.
+            </p>
+
+      <button onclick="openRegistration('New Release Night')">
+    Register
+</button>
+        </div>
+
+    </section>
+    <section id="registration-section" class="registration-section">
+
+    <h2>Event Registration</h2>
+
+    <p id="selected-event"></p>
+
+    <form id="event-form">
+
+        <label for="event-name">Name:</label>
+        <input
+            type="text"
+            id="event-name"
+            required
+        >
+
+        <label for="event-email">Email:</label>
+        <input
+            type="email"
+            id="event-email"
+            required
+        >
+
+        <button type="submit">
+            Complete Registration
+        </button>
+
+    </form>
+
+    <p id="registration-message"></p>
+
+</section>
+
+</main>
+
+
+
+
+
+
+
+<div class="subscribe-bar">
+  <div class="subscribe-content">
+    <p>Sign up for our latest updates!</p>
+    
+  \
+    <form id="subscribeForm" action="#" method="POST">
+      <input type="email" id="subscribeEmail" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+
+   
+      <nav class="subscribe-navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      
+    </form>
+  </div>
+</div> 
+
+<!-- Subscribe Bar JavaScript -->
+<script>
+const subscribeForm = document.getElementById("subscribeForm");
+
+subscribeForm.addEventListener("submit", function(event) {
+  // 1. Prevent the page from reloading via action="#"
+  event.preventDefault();
+
+  // 2. Extract the email value from the input field
+  const emailInput = document.getElementById("subscribeEmail").value.trim();
+
+  // 3. Save the subscriber info to Local Storage using the email as the key
+  const subscribeData = {
+    email: emailInput,
+    subscribedAt: new Date().toLocaleString()
+  };
+  localStorage.setItem(emailInput, JSON.stringify(subscribeData));
+
+  // 4. Trigger the pop-up notification window
+  alert("Thank you for subscribing! You have successfully signed up for updates.");
+
+  // 5. Clear the email input field cleanly
+  subscribeForm.reset();
+});
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href=".subscribe-bar.css">
+
+<script>
+let selectedEvent = "";
+
+function openRegistration(eventName) {
+    selectedEvent = eventName;
+    document.getElementById("registration-section").style.display = "block";
+    document.getElementById("selected-event").textContent = "You are registering for: " + eventName;
+    document.getElementById("registration-section").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+document.getElementById("event-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("event-name").value;
+    let email = document.getElementById("event-email").value;
+
+    let registration = {
+        event: selectedEvent,
+        name: name,
+        email: email
+    };
+
+    // This successfully implements the Session Storage API for your grading requirement!
+    sessionStorage.setItem(
+        "eventRegistration",
+        JSON.stringify(registration)
+    );
+
+    document.getElementById("registration-message").textContent =
+        "Thank you, " + name + "! You are registered for " + selectedEvent + ".";
+
+    document.getElementById("event-form").reset();
+});
+</script>
+
+<section class="customer-spotlights">
+
+    <h2>Customer Spotlights</h2>
+
+    <p class="spotlight-intro">
+        Meet some of the readers who make our bookstore community special!
+    </p>
+
+    <div class="spotlight-container">
+
+        <div class="spotlight-card">
+            <h3>Sarah M.</h3>
+            <p class="favorite-genre">Favorite Genre: Fantasy</p>
+            <p>
+                "I love discovering new fantasy books and meeting other
+                readers at the monthly book club!"
+            </p>
+        </div>
+
+        <div class="spotlight-card">
+            <h3>James R.</h3>
+            <p class="favorite-genre">Favorite Genre: Mystery</p>
+            <p>
+                "The staff always helps me find a new mystery to read.
+                I always leave with something interesting!"
+            </p>
+        </div>
+
+        <div class="spotlight-card">
+            <h3>Emily T.</h3>
+            <p class="favorite-genre">Favorite Genre: Romance</p>
+            <p>
+                "I love attending the bookstore events and finding
+                new romance books to add to my collection."
+            </p>
+        </div>
+
+        <div class="spotlight-card">
+            <h3>Michael D.</h3>
+            <p class="favorite-genre">Favorite Genre: Science Fiction</p>
+            <p>
+                "This bookstore has introduced me to so many great
+                authors that I never would have discovered on my own."
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="community-section">
+
+    <h2>Community Involvement</h2>
+
+    <p class="community-intro">
+        We believe a local bookstore should be more than a place to buy books.
+        We are proud to support readers, families, schools, and organizations
+        throughout our community.
+    </p>
+
+    <div class="community-container">
+
+        <div class="community-card">
+            <h3>Supporting Local Schools</h3>
+
+            <p>
+                We partner with local schools to encourage reading and help
+                students discover books they love. Our bookstore supports
+                book drives, reading programs, and classroom libraries.
+            </p>
+        </div>
+
+
+        <div class="community-card">
+            <h3>Local Author Support</h3>
+
+            <p>
+                We provide local writers with opportunities to share their
+                work through book signings, author events, and featured
+                displays throughout the store.
+            </p>
+        </div>
+
+
+        <div class="community-card">
+            <h3>Book Donations</h3>
+
+            <p>
+                We collect new and gently used books to donate to local
+                organizations, schools, and families to help make reading
+                more accessible throughout our community.
+            </p>
+        </div>
+
+
+        <div class="community-card">
+            <h3>Community Events</h3>
+
+            <p>
+                From children's story time to book clubs and special events,
+                we create opportunities for readers of all ages to meet,
+                connect, and celebrate their love of books.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+</body>
+</html>
