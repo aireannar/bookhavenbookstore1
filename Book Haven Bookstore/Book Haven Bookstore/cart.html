@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Book Haven</title>
+    <!-- Links to your main stylesheet to keep the header and footer styled -->
+    <link rel="stylesheet" href="subscribe-bar.css">
+</head>
+<body>
+
+    <!-- Main Header (Consistent with your website) -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="Client3_LogoPalette1_EE583F.png" alt="Book Haven Bookstore Home">
+            </a>
+        </div>
+        <div class="header-brand">
+            <a href="index.html" class="brand-title">Book Haven Bookstore</a>
+        </div>
+        <nav class="Navigation">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="events.html">Events</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Cart Layout Section -->
+    <main class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        
+        <div class="cart-layout-grid">
+            
+            <!-- Left Side: List of Selected Items -->
+            <div class="cart-items-list">
+                <div class="cart-item">
+                    <img src="WEBDEV445_c.png" alt="Book Cover" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h3>The Great Gatsby</h3>
+                        <p class="cart-item-author">F. Scott Fitzgerald</p>
+                        <p class="cart-item-price">$14.99</p>
+                        <button type="button" class="remove-item-btn">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Order Summary Calculation Box -->
+            <div class="cart-summary-box">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>$14.99</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span class="free-shipping">FREE</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span>$14.99</span>
+                </div>
+                <button type="button" class="checkout-btn">Proceed to Checkout</button>
+                <a href="gallery.html" class="continue-shopping">← Continue Shopping</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
